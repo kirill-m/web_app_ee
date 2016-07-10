@@ -7,7 +7,7 @@ import java.sql.*;
 /**
  * Created by kirill on 09.07.16
  */
-public class TablePopulator {
+public class TableFiller {
 
     public static void populate(int rows) {
         Statement st;

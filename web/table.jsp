@@ -9,6 +9,7 @@
 </head>
 <body>
     <h1>Data from test_table</h1>
+    <a href="index.jsp">Back</a>
     <table border=1 cellpadding=3 cellspacing=1>
         <tr>
             <th>ID</th>
@@ -18,7 +19,7 @@
 
         <%@ page import = "java.sql.*" %>
         <%@ page import="java.io.PrintWriter" %>
-        <%@ page import="main.java.db_helper.TablePopulator" %>
+        <%@ page import="main.java.db_helper.TableFiller" %>
         <%
             PrintWriter outStream = response.getWriter();
             String message = request.getParameter("rows");
@@ -33,7 +34,7 @@
         %>
         <p>Rows: <%=rows%></p>
         <%
-            TablePopulator.populate(rows);
+            TableFiller.populate(rows);
 
         try {
             Class.forName("org.h2.Driver");
@@ -50,12 +51,13 @@
         <%
 
             }
+            rs.close();
             st.close();
             conn.close();
         } catch (ClassNotFoundException e) {
             outStream.println(e);
         } catch (SQLException e) {
-                outStream.println(e);
+            outStream.println(e);
         }
         %>
     </table>
